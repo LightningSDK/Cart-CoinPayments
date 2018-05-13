@@ -83,7 +83,6 @@
             $.ajax({
                 url: '/api/coinpayments/order?order_id=' + self.orderId,
                 success: function(data) {
-                    console.log(data);
                     if (data.complete === true) {
                         document.location = '/store/checkout?page=confirmation';
                     } else {

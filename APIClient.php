@@ -32,7 +32,15 @@ class APIClient extends RestClient {
 
         $this->setMultiple($params);
         $this->callPost();
-        return $this->get('result');
+        $results = $this->get('result');
+        $output = [];
+        $currency = Configuration::get('modules.checkout.currency', 'USD');
+        foreach ($results as $coin => $data) {
+            if ($data['accepted'] == 1 || $coin == $currency) {
+                $output[$coin] = $data;
+            }
+        }
+        return $output;
     }
 
     public function getPaymentAddress($settings = []) {

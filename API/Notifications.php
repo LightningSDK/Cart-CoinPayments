@@ -2,11 +2,15 @@
 
 namespace Modules\CoinPayments\API;
 
+use Exception;
 use Lightning\Tools\Configuration;
+use Lightning\Tools\Logger;
 use Lightning\Tools\Mailer;
 use Lightning\Tools\Output;
+use Lightning\Tools\Request;
 use Lightning\View\API;
 use Modules\Checkout\Model\Payment;
+use Modules\CoinPayments\Model\Transaction;
 
 class Notifications extends API {
     public function post() {
@@ -41,7 +45,7 @@ class Notifications extends API {
 
         // HMAC Signature verified at this point, load some variables.
 
-        $txn_id = $_POST['txn_id'];
+        $txn_id = Request::post('txn_id');
 //        $item_name = $_POST['item_name'];
 //        $item_number = $_POST['item_number'];
 
@@ -71,10 +75,19 @@ class Notifications extends API {
             return Output::SUCCESS;
         }
 
-        $order_id = 1000;
+        // Load the transaction to get the order ID.
+        $transaction = Transaction::loadByTransaction($txn_id);
+        if (empty($transaction)) {
+            Logger::error("[coinpayments] Received IPN with txn_id {$txn_id} that could not be found.");
+            throw new Exception('Transaction not found');
+        }
 
         // Mark the order as complete
-        $order = \Modules\Checkout\Model\Order::loadByID($order_id);
+        $order = \Modules\Checkout\Model\Order::loadByID($transaction->order_id);
+        if (empty($order)) {
+            Logger::error("[coinpayments] Received IPN with txn_id {$txn_id} and order number {$transaction->order_id}, but the order was not found.");
+            throw new Exception('Order not found');
+        }
         $order->addPayment($amount2, $currency2, $txn_id);
 
         $order->sendNotifications();
@@ -84,7 +97,7 @@ class Notifications extends API {
             $mailer = new Mailer();
             $mailer->to(Configuration::get('contact.to')[0]);
             $mailer->subject('An order payment was received for the wrong amount.');
-            $mailer->message('A payment of ' . $amount1 . ' ' . $currency1 . ' was received for the order ' . $order_id . ', but ' . $order->getTotal() . ' was expected');
+            $mailer->message('A payment of ' . $amount1 . ' ' . $currency1 . ' was received for the order ' . $transaction->order_id . ', but ' . $order->getTotal() . ' was expected');
             $mailer->send();
         }
 
