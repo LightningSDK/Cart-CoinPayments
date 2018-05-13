@@ -6,6 +6,7 @@
         meta: {},
         amount: 0,
         cryptoSelector: null,
+        polling: false,
 
         init: function () {
             self.cryptoSelector = $('.crypto-selector');
@@ -58,12 +59,36 @@
                     coin: self.cryptoSelector.val()
                 },
                 success: function(data) {
-                    console.log(data);
+                    self.orderId = data.order_id;
                     var container = $('.paymentQRCode').show();
                     container.find('img').prop('src', data['qrcode_url']);
                     container.find('.coin').text(data['coin']);
                     container.find('.coinAmount').text(data['amount']);
                     container.find('.address').text(data['address']);
+                    self.beginPolling();
+                }
+            });
+        },
+
+        beginPolling: function() {
+            if (self.polling) {
+                return;
+            }
+
+            self.polling = true;
+            self.resetPoll();
+        },
+
+        resetPoll: function() {
+            $.ajax({
+                url: '/api/coinpayments/order?order_id=' + self.orderId,
+                success: function(data) {
+                    console.log(data);
+                    if (data.complete === true) {
+                        document.location = '/store/checkout?page=confirmation';
+                    } else {
+                        setTimeout(self.resetPoll, 1000);
+                    }
                 }
             });
         }

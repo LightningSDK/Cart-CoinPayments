@@ -43,7 +43,7 @@ class APIClient extends RestClient {
             'currency2' => !empty($settings['coin']) ? $settings['coin'] : 'BTC',
             'buyer_email' => $settings['email'],
             'buyer_name' => $settings['name'],
-            'invoice_ud' => $settings['order_id'],
+            'invoice_id' => $settings['order_id'],
         ];
 
         $this->setMultiple($params);
