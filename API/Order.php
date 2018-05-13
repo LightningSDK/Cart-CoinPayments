@@ -7,6 +7,7 @@ use Lightning\Tools\Request;
 use Lightning\View\API;
 use Modules\CoinPayments\APIClient;
 use Modules\Checkout\Model\Order as OrderModel;
+use Modules\CoinPayments\Model\Transaction;
 
 class Order extends API {
     public function postCreateTransaction() {
@@ -26,10 +27,17 @@ class Order extends API {
             'order_id' => $order->id,
         ];
 
+        $payment_info = $client->getPaymentAddress($options);
+
+        Transaction::create([
+            'order_id' => $order->id,
+            'transaction_id' => $payment_info['txn_id'],
+        ]);
+
         return [
             'coin' => $coin,
             'order_id' => $order->id,
-        ] + $client->getPaymentAddress($options);
+        ] + $payment_info;
     }
 
     /**

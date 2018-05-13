@@ -7,6 +7,8 @@
             Please send <span class="coinAmount"></span> <span class="coin"></span> to <span class="address"></span>
             <br><br>
             <img>
+            <br><br>
+            Please be patient, as some coins take longer to confirm than others. Once your payment has been received, you will receive an email confirmation.
         </div>
     </div>
 </div>
