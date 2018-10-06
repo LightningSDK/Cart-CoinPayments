@@ -54,6 +54,11 @@ class APIClient extends RestClient {
             'invoice_id' => $settings['order_id'],
         ];
 
+        $config = Configuration::get('modules.coinpayments');
+        if (!empty($config['ipn_url'])) {
+            $params['ipn_url'] = $config['ipn_url'];
+        }
+
         $this->setMultiple($params);
         $this->callPost();
         return $this->get('result');
