@@ -2,6 +2,7 @@
 
 namespace Modules\CoinPayments\Connectors;
 
+use Lightning\Tools\Configuration;
 use Lightning\Tools\Template;
 use Lightning\View\JS;
 use Modules\Checkout\Handlers\Payment;
@@ -17,6 +18,11 @@ class Checkout extends Payment {
         JS::startup('lightning.modules.coinPayments.init();', '/js/Checkout.min.js');
         JS::set('modules.coinPayments.rates', $rates);
         Template::getInstance()->set('coinPayments', $this);
+    }
+
+    public function isConfigured() {
+        $config = Configuration::get('modules.coinpayments');
+        return !empty($config['public']);
     }
 
     public function getDescription() {
