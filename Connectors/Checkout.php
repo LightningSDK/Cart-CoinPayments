@@ -33,6 +33,10 @@ class Checkout extends Payment {
         return 'Crypto Currencies';
     }
 
+    public function getLogo() {
+        return '/images/checkout/logos/coinpayments.png';
+    }
+
     public function getPage(Order $cart) {
         return ['process', 'CoinPayments'];
     }
