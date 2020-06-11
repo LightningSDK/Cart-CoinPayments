@@ -1,0 +1,8 @@
+{
+  "name": "lightningsdk/checkout-coinpayments",
+  "type": "library",
+  "description": "Adds CoinPayments integration to Checkout.",
+  "version": "1.0.0",
+  "require": {
+  }
+}
