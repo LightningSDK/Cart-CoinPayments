@@ -2,8 +2,8 @@
 
 namespace Modules\CoinPayments\Model;
 
-use Lightning\Model\Object;
-use Lightning\Tools\Database;
+use lightningsdk\core\Model\Object;
+use lightningsdk\core\Tools\Database;
 
 class Transaction extends Object {
     const TABLE = 'checkout_coinpayments';

@@ -3,12 +3,12 @@
 namespace Modules\CoinPayments\API;
 
 use Exception;
-use Lightning\Tools\Configuration;
-use Lightning\Tools\Logger;
-use Lightning\Tools\Mailer;
-use Lightning\Tools\Output;
-use Lightning\Tools\Request;
-use Lightning\View\API;
+use lightningsdk\core\Tools\Configuration;
+use lightningsdk\core\Tools\Logger;
+use lightningsdk\core\Tools\Mailer;
+use lightningsdk\core\Tools\Output;
+use lightningsdk\core\Tools\Request;
+use lightningsdk\core\View\API;
 use Modules\Checkout\Model\Payment;
 use Modules\CoinPayments\Model\Transaction;
 

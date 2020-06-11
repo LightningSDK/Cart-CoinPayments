@@ -2,8 +2,8 @@
 
 namespace Modules\CoinPayments;
 
-use Lightning\Tools\Communicator\RestClient;
-use Lightning\Tools\Configuration;
+use lightningsdk\core\Tools\Communicator\RestClient;
+use lightningsdk\core\Tools\Configuration;
 
 class APIClient extends RestClient {
 

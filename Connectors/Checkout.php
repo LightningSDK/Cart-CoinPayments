@@ -2,9 +2,9 @@
 
 namespace Modules\CoinPayments\Connectors;
 
-use Lightning\Tools\Configuration;
-use Lightning\Tools\Template;
-use Lightning\View\JS;
+use lightningsdk\core\Tools\Configuration;
+use lightningsdk\core\Tools\Template;
+use lightningsdk\core\View\JS;
 use Modules\Checkout\Handlers\Payment;
 use Modules\Checkout\Model\Order;
 use Modules\CoinPayments\APIClient;

@@ -3,8 +3,8 @@
 namespace Modules\CoinPayments\API;
 
 use Exception;
-use Lightning\Tools\Request;
-use Lightning\View\API;
+use lightningsdk\core\Tools\Request;
+use lightningsdk\core\View\API;
 use Modules\CoinPayments\APIClient;
 use Modules\Checkout\Model\Order as OrderModel;
 use Modules\CoinPayments\Model\Transaction;
