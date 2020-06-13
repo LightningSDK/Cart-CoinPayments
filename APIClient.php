@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\CoinPayments;
+namespace lightningsdk\checkout_coinpayments;
 
 use lightningsdk\core\Tools\Communicator\RestClient;
 use lightningsdk\core\Tools\Configuration;

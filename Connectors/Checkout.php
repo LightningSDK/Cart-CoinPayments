@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\CoinPayments\Connectors;
+namespace lightningsdk\checkout_coinpayments\Connectors;
 
 use lightningsdk\core\Tools\Configuration;
 use lightningsdk\core\Tools\Template;
 use lightningsdk\core\View\JS;
-use Modules\Checkout\Handlers\Payment;
-use Modules\Checkout\Model\Order;
-use Modules\CoinPayments\APIClient;
+use lightningsdk\checkout\Handlers\Payment;
+use lightningsdk\checkout\Model\Order;
+use lightningsdk\checkout_coinpayments\APIClient;
 
 class Checkout extends Payment {
     public function init() {

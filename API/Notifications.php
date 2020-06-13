@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\CoinPayments\API;
+namespace lightningsdk\checkout_coinpayments\API;
 
 use Exception;
 use lightningsdk\core\Tools\Configuration;
@@ -9,8 +9,8 @@ use lightningsdk\core\Tools\Mailer;
 use lightningsdk\core\Tools\Output;
 use lightningsdk\core\Tools\Request;
 use lightningsdk\core\View\API;
-use Modules\Checkout\Model\Payment;
-use Modules\CoinPayments\Model\Transaction;
+use lightningsdk\checkout\Model\Payment;
+use lightningsdk\checkout_coinpayments\Model\Transaction;
 
 class Notifications extends API {
     public function post() {
@@ -83,7 +83,7 @@ class Notifications extends API {
         }
 
         // Mark the order as complete
-        $order = \Modules\Checkout\Model\Order::loadByID($transaction->order_id);
+        $order = \lightningsdk\checkout\Model\Order::loadByID($transaction->order_id);
         if (empty($order)) {
             Logger::error("[coinpayments] Received IPN with txn_id {$txn_id} and order number {$transaction->order_id}, but the order was not found.");
             throw new Exception('Order not found');

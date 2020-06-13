@@ -7,8 +7,8 @@ return [
     ],
     'routes' => [
         'static' => [
-            'api/coinpayments/order' => \Modules\CoinPayments\API\Order::class,
-            'api/coinpayments/notifications' => \Modules\CoinPayments\API\Notifications::class,
+            'api/coinpayments/order' => \lightningsdk\checkout_coinpayments\API\Order::class,
+            'api/coinpayments/notifications' => \lightningsdk\checkout_coinpayments\API\Notifications::class,
         ]
     ],
     'js' => [

@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\CoinPayments\Model;
+namespace lightningsdk\checkout_coinpayments\Model;
 
 use lightningsdk\core\Model\Object;
 use lightningsdk\core\Tools\Database;

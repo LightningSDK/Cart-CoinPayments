@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\CoinPayments\API;
+namespace lightningsdk\checkout_coinpayments\API;
 
 use Exception;
 use lightningsdk\core\Tools\Request;
 use lightningsdk\core\View\API;
-use Modules\CoinPayments\APIClient;
-use Modules\Checkout\Model\Order as OrderModel;
-use Modules\CoinPayments\Model\Transaction;
+use lightningsdk\checkout_coinpayments\APIClient;
+use lightningsdk\checkout\Model\Order as OrderModel;
+use lightningsdk\checkout_coinpayments\Model\Transaction;
 
 class Order extends API {
     public function postCreateTransaction() {
