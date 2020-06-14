@@ -13,7 +13,7 @@ return [
     ],
     'js' => [
         // Module Name
-        'CoinPayments' => [
+        'lightningsdk/coinpayments' => [
             // Source file => Dest file
             'CoinPayments.js' => 'Checkout.min.js',
         ]

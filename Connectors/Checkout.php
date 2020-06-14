@@ -38,7 +38,7 @@ class Checkout extends Payment {
     }
 
     public function getPage(Order $cart) {
-        return ['process', 'CoinPayments'];
+        return ['process', 'lightningsdk/coinpayments'];
     }
 
     public function prepare(Order $order) {
